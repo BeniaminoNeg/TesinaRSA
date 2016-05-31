@@ -25,18 +25,21 @@ public class VHome implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.homeVBox.setAlignment(Pos.CENTER);
+        this.homeVBox.setAlignment(Pos.TOP_CENTER);
         double width = ConvertitorePx.percentualeToPxLarghezza(100);
         double height = ConvertitorePx.percentualeToPxAltezza(100);
         this.homeVBox.setPrefSize(width,height);
         HBox wrapperHBox = CreatoreHBox.creaHBox(Pos.CENTER,0,0,100,true);
-        HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
+        HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
-        HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
+        HBox eveHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
+        Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
+        HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         bobHBox.getChildren().addAll(bobNome);
+        eveHBox.getChildren().addAll(eveNome);
         aliceHBox.getChildren().addAll(aliceNome);
-        wrapperHBox.getChildren().addAll(bobHBox,aliceHBox);
+        wrapperHBox.getChildren().addAll(bobHBox,eveHBox,aliceHBox);
         this.homeVBox.getChildren().add(wrapperHBox);
     }
 }
