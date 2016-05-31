@@ -1,5 +1,6 @@
 package com.RSA.view.JavaFX.View;
 
+import com.RSA.view.JavaFX.Util.ConvertitorePx;
 import com.RSA.view.JavaFX.Util.Creatori.CreatoreHBox;
 import com.RSA.view.JavaFX.Util.Creatori.CreatoreLabel;
 import com.RSA.view.JavaFX.Util.Creatori.CreatoreVBox;
@@ -24,7 +25,10 @@ public class VHome implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.homeVBox = CreatoreVBox.creaVBox(Pos.CENTER,0,0,100,true);
+        this.homeVBox.setAlignment(Pos.CENTER);
+        double width = ConvertitorePx.percentualeToPxLarghezza(100);
+        double height = ConvertitorePx.percentualeToPxAltezza(100);
+        this.homeVBox.setPrefSize(width,height);
         HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
