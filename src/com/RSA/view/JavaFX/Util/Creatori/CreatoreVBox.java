@@ -22,6 +22,7 @@ public class CreatoreVBox extends VBox {
         vBox.setStyle("-fx-border-insets: "+paddingAlto+"px 0px "+paddingBasso+"px 0px; -fx-background-insets: "+paddingAlto+"px 0px "+paddingBasso+"px 0px; -fx-padding: "+paddingAlto+"px 0px "+paddingBasso+"px 0px;");
         double maxWidth = ConvertitorePx.percentualeToPxLarghezza(maxWidthPercentuale);
         vBox.setMaxWidth(maxWidth);
+        vBox.setMinWidth(maxWidth);
         vBox.setVisible(visibile);
     }
 
