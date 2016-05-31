@@ -2,7 +2,7 @@
  * 
  */
 package com.RSA.main;
-import com.RSA.view.VHome;
+import View.viewVecchia.VHome;
 
 /**
  * @author Eugenio
