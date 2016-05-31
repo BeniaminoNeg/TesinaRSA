@@ -33,14 +33,10 @@ public class VHome implements Initializable {
         HBox wrapperHBox = CreatoreHBox.creaHBox(Pos.CENTER,0,0,100,true);
         HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
-<<<<<<< HEAD
         Button bobKeyButton =
-        HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
-=======
         HBox eveHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,33.3,true);
->>>>>>> origin/master
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         bobHBox.getChildren().addAll(bobNome);
         eveHBox.getChildren().addAll(eveNome);
