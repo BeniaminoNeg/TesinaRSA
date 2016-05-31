@@ -6,6 +6,7 @@ import com.RSA.view.JavaFX.Util.Creatori.CreatoreLabel;
 import com.RSA.view.JavaFX.Util.Creatori.CreatoreVBox;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -32,6 +33,7 @@ public class VHome implements Initializable {
         HBox wrapperHBox = CreatoreHBox.creaHBox(Pos.CENTER,0,0,100,true);
         HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
+        Button bobKeyButton =
         HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         bobHBox.getChildren().addAll(bobNome);
