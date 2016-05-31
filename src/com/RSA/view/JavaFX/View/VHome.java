@@ -29,12 +29,14 @@ public class VHome implements Initializable {
         double width = ConvertitorePx.percentualeToPxLarghezza(100);
         double height = ConvertitorePx.percentualeToPxAltezza(100);
         this.homeVBox.setPrefSize(width,height);
+        HBox wrapperHBox = CreatoreHBox.creaHBox(Pos.CENTER,0,0,100,true);
         HBox bobHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         HBox aliceHBox = CreatoreHBox.creaHBox(Pos.CENTER,0.5,0.5,50,true);
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         bobHBox.getChildren().addAll(bobNome);
         aliceHBox.getChildren().addAll(aliceNome);
-        this.homeVBox.getChildren().addAll(bobHBox,aliceHBox);
+        wrapperHBox.getChildren().addAll(bobHBox,aliceHBox);
+        this.homeVBox.getChildren().add(wrapperHBox);
     }
 }
