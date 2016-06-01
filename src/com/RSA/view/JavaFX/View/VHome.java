@@ -104,14 +104,17 @@ public class VHome implements Initializable {
             content.getChildren().clear();
             GeneratoreChiavi.generaChiavi(client,true);
         } else {
-            content = CreatoreVBox.creaVBox(Pos.TOP_LEFT,0,0,90,true);
+            content = CreatoreVBox.creaVBox(Pos.TOP_LEFT,0,0,200,true);
             scrollPane = CreatoreScrollPane.creaScrollPane(content,31,2,2,true);
         }
         Label privata = CreatoreLabel.creaLabel("Private Key:",Font.font("System",FontWeight.BOLD,16),5,TextAlignment.LEFT,0.5,0,true);
-        Label p = CreatoreLabel.creaLabel("p: "+client.get_privateKey().get_p().toString(),Font.font("System", FontPosture.REGULAR,12),90,TextAlignment.LEFT,0.5,0,true);
-        Label q = CreatoreLabel.creaLabel("q: "+client.get_privateKey().get_q().toString(),Font.font("System", FontPosture.REGULAR,12),90,TextAlignment.LEFT,0.5,0,true);
-        Label d = CreatoreLabel.creaLabel("d: "+client.get_privateKey().get_d().toString(),Font.font("System", FontPosture.REGULAR,12),90,TextAlignment.LEFT,0.5,0,true);
-        content.getChildren().addAll(privata,p,q,d);
+        Label p = CreatoreLabel.creaLabel("p: "+client.get_privateKey().get_p().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
+        Label q = CreatoreLabel.creaLabel("q: "+client.get_privateKey().get_q().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
+        Label d = CreatoreLabel.creaLabel("d: "+client.get_privateKey().get_d().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
+        Label pubblica = CreatoreLabel.creaLabel("Public Key:",Font.font("System",FontWeight.BOLD,16),5,TextAlignment.LEFT,0.5,0,true);
+        Label n = CreatoreLabel.creaLabel("n: "+client.get_publicKey().get_n().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
+        Label e = CreatoreLabel.creaLabel("e: "+client.get_publicKey().get_e().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
+        content.getChildren().addAll(privata,p,q,d,pubblica,n,e);
         return scrollPane;
     }
 }
