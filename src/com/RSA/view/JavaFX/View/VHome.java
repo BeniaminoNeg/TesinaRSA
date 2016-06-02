@@ -53,6 +53,7 @@ public class VHome implements Initializable {
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                bobKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneBob;
                 if (scrollPaneBob == null) {
                     scrollPaneBob = creaScrollPane(bob);
@@ -82,6 +83,7 @@ public class VHome implements Initializable {
         aliceKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                aliceKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneAlice;
                 if (scrollPaneAlice == null) {
                     scrollPaneAlice = creaScrollPane(alice);
