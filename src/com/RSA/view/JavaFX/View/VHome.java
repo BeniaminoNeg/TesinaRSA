@@ -30,6 +30,8 @@ public class VHome implements Initializable {
     public ScrollPane scrollPaneBob;
     public ScrollPane scrollPaneAlice;
     public ScrollPane scrollPaneAttuale;
+    public Button scriviMessaggioBobButton;
+    public Button scriviMessaggioAliceButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,6 +90,8 @@ public class VHome implements Initializable {
                 if (scrollPaneAlice == null) {
                     scrollPaneAlice = creaScrollPane(alice);
                     aliceVBox.getChildren().add(scrollPaneAlice);
+                    scriviMessaggioAliceButton = creaMessaggioButton(alice);
+                    aliceVBox.getChildren().add(scriviMessaggioAliceButton);
                 } else {
                     creaScrollPane(alice);
                 }
@@ -117,6 +121,8 @@ public class VHome implements Initializable {
         Label n = CreatoreLabel.creaLabel("n: "+client.get_publicKey().get_n().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
         Label e = CreatoreLabel.creaLabel("e: "+client.get_publicKey().get_e().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
         content.getChildren().addAll(privata,p,q,d,pubblica,n,e);
+
+
         return scrollPane;
     }
 }
