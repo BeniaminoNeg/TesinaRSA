@@ -19,6 +19,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -35,6 +37,9 @@ public class VHome implements Initializable {
     public Button scriviMessaggioAliceButton;
     public Button leggiUltimoMessaggioAliceButton;
     public Button leggiUltimoMessaggioBobButton;
+
+    public ToggleGroup sicuraBobToggleGroup;
+    public ToggleGroup sicuraAliceToggleGroup;
 
     public Client bob;
     public Client alice;
@@ -92,6 +97,11 @@ public class VHome implements Initializable {
         VBox aliceVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         Button aliceKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
+        List<String> testi = new ArrayList<>();
+        testi.add("Insicura");
+        testi.add("Sicura");
+        List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
+        sicuraAliceToggleGroup=radio.get(0).getToggleGroup();
         alice = new Client("Alice", true);
         aliceKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
