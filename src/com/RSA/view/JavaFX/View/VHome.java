@@ -58,6 +58,7 @@ public class VHome implements Initializable {
                 if (scrollPaneBob == null) {
                     scrollPaneBob = creaScrollPane(bob);
                     bobVBox.getChildren().add(scrollPaneBob);
+                    scriviMessaggioBobButton = creaMessaggioButton(bob);
                 } else {
                     creaScrollPane(bob);
                 }
@@ -118,5 +119,10 @@ public class VHome implements Initializable {
         Label e = CreatoreLabel.creaLabel("e: "+client.get_publicKey().get_e().toString(),Font.font("System", FontPosture.REGULAR,12),200,TextAlignment.LEFT,0.5,0,true);
         content.getChildren().addAll(privata,p,q,d,pubblica,n,e);
         return scrollPane;
+    }
+
+    public Button creaMessaggioButton(Client client) {
+        Button bottone = CreatoreBottone.creaBottone("Invia Messaggio",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0,true);
+        return bottone;
     }
 }
