@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.RSA.model.UtilityIntegerNumber;
 import com.RSA.model.algoritmoTestPrimalita.AlgoritmoTestPrimalitaMillerRabinStrategy;
+import com.RSA.model.algoritmoTestPrimalita.AlgoritmoTestPrimalitÃ FermatStrategy;
 import com.RSA.model.algoritmoTestPrimalita.IAlgoritmoTestPrimalitaStrategy;
 
 
@@ -22,8 +23,8 @@ import com.RSA.model.algoritmoTestPrimalita.IAlgoritmoTestPrimalitaStrategy;
  */
 public class GeneratoreChiavi {
 	/**
-	 * Probabilità che i numeri primi generati siano effettivamente primi, 
-	 * con probabilità pari ad (1/4)^_accuracy.
+	 * Probabilitï¿½ che i numeri primi generati siano effettivamente primi, 
+	 * con probabilitï¿½ pari ad (1/4)^_accuracy.
 	 */
 	private static int _accuracy = 100;
 	/**
@@ -50,14 +51,14 @@ public class GeneratoreChiavi {
 		BigInteger p=null, q=null, d=null, e=null, n=null, q_meno_1=null; 
 		// Oggetto responsabile della creazione del numero randomico
 		SecureRandom secureRandom = new SecureRandom();
-		// Il punto di partenza è un numero intero compreso tra 0 e 2^(_numBitP-1).
+		// Il punto di partenza ï¿½ un numero intero compreso tra 0 e 2^(_numBitP-1).
 		BigInteger numberStart_p = new BigInteger(_numeroBitChiaveP, secureRandom);
 		// Calcolo p e p-1
 		p = getFirstPrimeNumberAfterNumber(numberStart_p, _accuracy);
 		BigInteger p_meno_1 = p.subtract(BigInteger.ONE);
 		// Controllo che si vogliano usare esponenti di cifratura sicuri
 		if (sicuro == true) {
-			// Il punto di partenza è un numero intero compreso tra 0 e 2^(_numBitQ-1).
+			// Il punto di partenza ï¿½ un numero intero compreso tra 0 e 2^(_numBitQ-1).
 			BigInteger numberStart_q = new BigInteger(_numeroBitChiaveQ, secureRandom);
 			// Calcolo q e q-1
 			q = getFirstPrimeNumberAfterNumber(numberStart_q, _accuracy);
@@ -122,7 +123,7 @@ public class GeneratoreChiavi {
 	 * Metodo per ottenere il primo 'numero primo' dopo un numero intero dato.
 	 * 
 	 * @param number Numero dal quale avviare la ricerca.
-	 * @param accuracy Precisione nella valutazione di primalità.
+	 * @param accuracy Precisione nella valutazione di primalitï¿½.
 	 */
 	public static BigInteger getFirstPrimeNumberAfterNumber(BigInteger number, int accuracy) {
 		// Numero primo da restituire
@@ -130,16 +131,17 @@ public class GeneratoreChiavi {
 		// Booleano che rappresenta la condizione di uscita.
 		boolean trovato = false;
 		// Strategia
-		IAlgoritmoTestPrimalitaStrategy algoritmoTestPrimalitaStrategy = new AlgoritmoTestPrimalitaMillerRabinStrategy();
+		//IAlgoritmoTestPrimalitaStrategy algoritmoTestPrimalitaStrategy = new AlgoritmoTestPrimalitaMillerRabinStrategy();
+		IAlgoritmoTestPrimalitaStrategy algoritmoTestPrimalitaStrategy = new AlgoritmoTestPrimalitÃ FermatStrategy();
 //		System.out.println("Numero di partenza: " + number);
 		
 		// Carico la lista dei numeri primi precedenti a number.
 		List<BigInteger> listaNumeriPrimiPrecedentiNumber = UtilityIntegerNumber.getListaPrimiPrecedentiNumber(_upperBoundRicercaPrimi, _accuracy);
-		// Ciclo finchè non trovo il numero primo.
+		// Ciclo finchï¿½ non trovo il numero primo.
 		while(!trovato) {
 			// Effettuo il test e salvo l'esito in trovato
 			trovato = algoritmoTestPrimalitaStrategy.testaPrimalitaIntero(number, accuracy);					
-			// Se l'esito del test è positivo assegno il valore di number a primeNumber.
+			// Se l'esito del test ï¿½ positivo assegno il valore di number a primeNumber.
 			if (trovato == true) {		
 				primeNumber = number;
 			} else {			
@@ -174,7 +176,7 @@ public class GeneratoreChiavi {
 		while(!trovato) {
 			/* 
 			 * Condizione per verificare se il numero da testare in questa iterazione del 
-			 * ciclo è o meno multiplo della lista dei primi.
+			 * ciclo ï¿½ o meno multiplo della lista dei primi.
 			 */	
 			boolean multiplo = false;
 			// Ciclo per verificare che il numero nell'iterazione corrente non sia multiplo di un numero primo.
@@ -187,7 +189,7 @@ public class GeneratoreChiavi {
 				}
 			}
 			/* 
-			 * Se il numero appena testato è un multiplo di uno dei primi, incremento 
+			 * Se il numero appena testato ï¿½ un multiplo di uno dei primi, incremento 
 			 * di uno e al prossimo ciclo testo nuovamente.
 			 */
 			if (multiplo == true) {
@@ -195,7 +197,7 @@ public class GeneratoreChiavi {
 			} else {
 				/*
 				 * Se il numero appena testato non era multiplo di nessuno dei primi allora 
-				 * è un buon candidato e usciamo dal ciclo.
+				 * ï¿½ un buon candidato e usciamo dal ciclo.
 				 */
 				trovato = true;
 				// Assegno il valore del numero trovato alla variabile da fornire in output.
