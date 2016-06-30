@@ -109,7 +109,7 @@ public class VHome implements Initializable {
         testi.add("Sicura");
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
         sicuraAliceToggleGroup=radio.get(0).getToggleGroup();
-        alice = new Client("Alice", true);
+        alice = new Client("Alice", false);
         aliceKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
