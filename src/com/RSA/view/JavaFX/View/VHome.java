@@ -69,7 +69,8 @@ public class VHome implements Initializable {
                     bobVBox.getChildren().add(scrollPaneBob);
                     scriviMessaggioBobButton = creaMessaggioButton(bob);
                     bobVBox.getChildren().add(scriviMessaggioBobButton);
-                    leggiUltimoMessaggioButton = creaLeggiMessaggioButton(bob);
+                    leggiUltimoMessaggioBobButton = creaLeggiMessaggioButton(bob);
+                    bobVBox.getChildren().add(leggiUltimoMessaggioBobButton);
                 } else {
                     creaScrollPane(bob);
                 }
