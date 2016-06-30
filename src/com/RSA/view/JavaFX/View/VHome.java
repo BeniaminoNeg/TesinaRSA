@@ -69,14 +69,19 @@ public class VHome implements Initializable {
         testi.add("Sicura");
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.LEFT,1,1,true);
         sicuraBobToggleGroup = radio.get(0).getToggleGroup();
+        sicuraBobToggleGroup.selectToggle(radio.get(1));
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
-        bob = new Client("Bob",true);
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 bobKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneBob;
                 if (scrollPaneBob == null) {
+                    if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+                        bob = new Client("Bob",true);
+                    } else {
+                        bob = new Client("Bob",false);
+                    }
                     scrollPaneBob = creaScrollPane(bob);
                     bobVBox.getChildren().add(scrollPaneBob);
                     scriviMessaggioBobButton = creaMessaggioButton(bob);
@@ -109,13 +114,23 @@ public class VHome implements Initializable {
         testi.add("Sicura");
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
         sicuraAliceToggleGroup=radio.get(0).getToggleGroup();
-        alice = new Client("Alice", true);
+        sicuraAliceToggleGroup.selectToggle(radio.get(1));
+        if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+            alice = new Client("Alice",true);
+        } else {
+            alice = new Client("Alice",false);
+        }
         aliceKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 aliceKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneAlice;
                 if (scrollPaneAlice == null) {
+                    if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+                        alice = new Client("Alice",true);
+                    } else {
+                        alice = new Client("Alice",false);
+                    }
                     scrollPaneAlice = creaScrollPane(alice);
                     aliceVBox.getChildren().add(scrollPaneAlice);
 
@@ -140,7 +155,17 @@ public class VHome implements Initializable {
             scrollPane = scrollPaneAttuale;
             content = (VBox) scrollPaneAttuale.getContent();
             content.getChildren().clear();
-            GeneratoreChiavi.generaChiavi(client,true);
+            ToggleGroup sicuraToggleGroup;
+            if (client.get_nomeClient().equals("Bob")) {
+                sicuraToggleGroup = sicuraBobToggleGroup;
+            } else {
+                sicuraToggleGroup = sicuraAliceToggleGroup;
+            }
+            if (((RadioButton)sicuraToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+                GeneratoreChiavi.generaChiavi(client,true);
+            } else {
+                GeneratoreChiavi.generaChiavi(client,false);
+            }
         } else {
             content = CreatoreVBox.creaVBox(Pos.TOP_LEFT,0,0,200,true);
             scrollPane = CreatoreScrollPane.creaScrollPane(content,31,2,2,true);
