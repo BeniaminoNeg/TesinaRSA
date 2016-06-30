@@ -33,6 +33,8 @@ public class VHome implements Initializable {
     public ScrollPane scrollPaneAttuale;
     public Button scriviMessaggioBobButton;
     public Button scriviMessaggioAliceButton;
+    public Button leggiUltimoMessaggioAliceButton;
+    public Button leggiUltimoMessaggioBobButton;
 
     public Client bob;
     public Client alice;
@@ -98,8 +100,12 @@ public class VHome implements Initializable {
                 if (scrollPaneAlice == null) {
                     scrollPaneAlice = creaScrollPane(alice);
                     aliceVBox.getChildren().add(scrollPaneAlice);
+
                     scriviMessaggioAliceButton = creaMessaggioButton(alice);
                     aliceVBox.getChildren().add(scriviMessaggioAliceButton);
+
+                    leggiUltimoMessaggioAliceButton = creaLeggiMessaggioButton(alice);
+                    aliceVBox.getChildren().add(leggiUltimoMessaggioAliceButton);
                 } else {
                     creaScrollPane(alice);
                 }
