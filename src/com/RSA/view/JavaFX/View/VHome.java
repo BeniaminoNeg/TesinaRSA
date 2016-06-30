@@ -67,7 +67,7 @@ public class VHome implements Initializable {
         List<String> testi = new ArrayList<>();
         testi.add("Insicura");
         testi.add("Sicura");
-        List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
+        List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.LEFT,1,1,true);
         sicuraBobToggleGroup = radio.get(0).getToggleGroup();
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
         bob = new Client("Bob",true);
@@ -88,7 +88,7 @@ public class VHome implements Initializable {
                 }
             }
         });
-        bobVBox.getChildren().addAll(bobNome,bobKeyButton);
+        bobVBox.getChildren().addAll(bobNome,radio.get(0),radio.get(1),bobKeyButton);
         return bobVBox;
     }
 
@@ -129,7 +129,7 @@ public class VHome implements Initializable {
                 }
             }
         });
-        aliceVBox.getChildren().addAll(aliceNome,aliceKeyButton);
+        aliceVBox.getChildren().addAll(aliceNome,radio.get(0),radio.get(1),aliceKeyButton);
         return aliceVBox;
     }
 
