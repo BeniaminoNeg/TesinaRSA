@@ -67,6 +67,7 @@ public class VHome implements Initializable {
                     bobVBox.getChildren().add(scrollPaneBob);
                     scriviMessaggioBobButton = creaMessaggioButton(bob);
                     bobVBox.getChildren().add(scriviMessaggioBobButton);
+                    leggiUltimoMessaggioButton = creaLeggiMessaggioButton(bob);
                 } else {
                     creaScrollPane(bob);
                 }
@@ -154,6 +155,29 @@ public class VHome implements Initializable {
                         messaggioChiaro = new MessaggioChiaro(client,bob,messaggio);
                     }
                     client.inviaMessaggioToClient(messaggioChiaro);
+                }
+            }
+        });
+        return bottone;
+    }
+
+    public Button creaLeggiMessaggioButton(Client client) {
+        Button bottone = CreatoreBottone.creaBottone("Leggi Ultimo Messaggio Ricevuto",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0,true);
+        bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (client.getUltimoMessaggioRicevutoCifrato() != null) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ultimo Messaggio");
+                    alert.setHeaderText("Ultimo messaggio ricevuto");
+                    alert.setContentText(client.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro());
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ultimo Messaggio");
+                    alert.setHeaderText("Ultimo messaggio ricevuto");
+                    alert.setContentText("Nessun messaggio ricevuto");
+                    alert.showAndWait();
                 }
             }
         });
