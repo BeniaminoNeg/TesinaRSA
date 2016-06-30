@@ -70,7 +70,7 @@ public class VHome implements Initializable {
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
         sicuraBobToggleGroup = radio.get(0).getToggleGroup();
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
-        bob = new Client("Bob",true);
+        bob = new Client("Bob",false);
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
