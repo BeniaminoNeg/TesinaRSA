@@ -12,13 +12,17 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -57,6 +61,11 @@ public class VHome implements Initializable {
     public VBox creaBob() {
         VBox bobVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
+        List<String> testi = new ArrayList<>();
+        testi.add("Insicura");
+        testi.add("Sicura");
+        List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
+        sicuraBobToggleGroup = radio.get(0).getToggleGroup();
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
         bob = new Client("Bob",true);
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -173,11 +182,13 @@ public class VHome implements Initializable {
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (client.getUltimoMessaggioRicevutoCifrato() != null) {
+                BigInteger messaggioCifrato = client.getUltimoMessaggioRicevutoCifrato().get_messaggioCifrato();
+                if (messaggioCifrato != null) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ultimo Messaggio");
                     alert.setHeaderText("Ultimo messaggio ricevuto");
-                    alert.setContentText(client.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro());
+                    alert.setContentText("Messaggio in chiaro: "+ client.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() +"\n"+"Messaggio cifrato: "+messaggioCifrato);
+                    alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
                     alert.showAndWait();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
