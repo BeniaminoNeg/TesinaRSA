@@ -1,15 +1,15 @@
 package com.RSA.view.JavaFX.View;
 
 import com.RSA.model.algoritmoRSA.Client;
+import com.RSA.model.algoritmoRSA.Cracker;
 import com.RSA.model.algoritmoRSA.GeneratoreChiavi;
+import com.RSA.model.algoritmoRSA.MessaggioChiaro;
 import com.RSA.view.JavaFX.Util.ConvertitorePx;
 import com.RSA.view.JavaFX.Util.Creatori.*;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -32,6 +33,10 @@ public class VHome implements Initializable {
     public ScrollPane scrollPaneAttuale;
     public Button scriviMessaggioBobButton;
     public Button scriviMessaggioAliceButton;
+
+    public Client bob;
+    public Client alice;
+    public Cracker eve;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,7 +56,7 @@ public class VHome implements Initializable {
         VBox bobVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
-        Client bob = new Client("Bob",true);
+        bob = new Client("Bob",true);
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -61,6 +66,7 @@ public class VHome implements Initializable {
                     scrollPaneBob = creaScrollPane(bob);
                     bobVBox.getChildren().add(scrollPaneBob);
                     scriviMessaggioBobButton = creaMessaggioButton(bob);
+                    bobVBox.getChildren().add(scriviMessaggioBobButton);
                 } else {
                     creaScrollPane(bob);
                 }
@@ -82,7 +88,7 @@ public class VHome implements Initializable {
         VBox aliceVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         Button aliceKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
-        Client alice = new Client("Alice", true);
+        alice = new Client("Alice", true);
         aliceKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -129,6 +135,28 @@ public class VHome implements Initializable {
 
     public Button creaMessaggioButton(Client client) {
         Button bottone = CreatoreBottone.creaBottone("Invia Messaggio",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0,true);
+        bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                TextInputDialog dialog = new TextInputDialog("messaggio");
+                dialog.setTitle("Invio messaggio");
+                dialog.setHeaderText("Inserisci il messaggio");
+                dialog.setContentText("Messaggio da inviare:");
+
+                Optional<String> result = dialog.showAndWait();
+                if (result.isPresent()){
+                    String messaggio = result.get();
+                    MessaggioChiaro messaggioChiaro;
+                    if (client.get_nomeClient().equals("Bob")){
+                        messaggioChiaro = new MessaggioChiaro(client,alice,messaggio);
+                    }
+                    else{
+                        messaggioChiaro = new MessaggioChiaro(client,bob,messaggio);
+                    }
+                    client.inviaMessaggioToClient(messaggioChiaro);
+                }
+            }
+        });
         return bottone;
     }
 }
