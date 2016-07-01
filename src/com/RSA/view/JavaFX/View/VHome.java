@@ -111,12 +111,9 @@ public class VHome implements Initializable {
 
     public VBox creaEve() {
         eve = new Cracker();
-<<<<<<< HEAD
-        eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
-=======
+
         eve.setAttacco("Wiener");
-        VBox eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
->>>>>>> origin/master
+        eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         eveVBox.getChildren().addAll(eveNome);
         return eveVBox;
