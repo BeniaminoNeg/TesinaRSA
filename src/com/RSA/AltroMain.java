@@ -41,7 +41,7 @@ public class AltroMain {
         }
         Integer radice1 = (int) radice;
         BigInteger rad = new BigInteger(radice1.toString());
-        while (Bob.get_publicKey().get_n().mod(rad) == BigInteger.ZERO) {
+        while (Bob.get_publicKey().get_n().mod(rad) != BigInteger.ZERO) {
 
         }
     }
