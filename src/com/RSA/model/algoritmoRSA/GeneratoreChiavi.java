@@ -30,12 +30,8 @@ public class GeneratoreChiavi {
 	/**
 	 * Numero di bit per rappresentare il numero primo P.
 	 */
-<<<<<<< HEAD
 	private static int _numeroBitChiaveP = 512;
 	private static int _numeroBitChiavePAttacco = 28;
-=======
-	private static int _numeroBitChiaveP = 26;
->>>>>>> 3c195c467246c87292d3a62146da41e06da88cea
 	/**
 	 * Numero di bit per rappresentare il numero primo q. Si utilizzano meno bit
 	 * rispetto a quelli utilizzati per rappresentare il numero primo p, per evitare
