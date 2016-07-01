@@ -44,6 +44,8 @@ public class VHome implements Initializable {
     public ToggleGroup sicuraBobToggleGroup;
     public ToggleGroup sicuraAliceToggleGroup;
 
+    public VBox eveVBox;
+
     public Client bob;
     public Client alice;
     public Cracker eve;
@@ -72,11 +74,6 @@ public class VHome implements Initializable {
         sicuraBobToggleGroup = radio.get(0).getToggleGroup();
         sicuraBobToggleGroup.selectToggle(radio.get(1));
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
-        if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
-            bob = new Client("Bob",true);
-        } else {
-            bob = new Client("Bob",false);
-        }
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -97,6 +94,10 @@ public class VHome implements Initializable {
                     bobVBox.getChildren().add(scriviMessaggioBobButton);
                     leggiUltimoMessaggioBobButton = creaLeggiMessaggioButton(bob);
                     bobVBox.getChildren().add(leggiUltimoMessaggioBobButton);
+
+                    trovaChiaveBobButton = creaAttaccoButton(bob);
+                    eveVBox.getChildren().addAll(trovaChiaveBobButton);
+
                 } else {
                     creaScrollPane(bob);
                 }
@@ -109,8 +110,9 @@ public class VHome implements Initializable {
 
     public VBox creaEve() {
         eve = new Cracker();
+
         eve.setAttacco("Wiener");
-        VBox eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
+        eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         Label tipologiaAttacco = CreatoreLabel.creaLabel("Tipologia attacco:",Font.font("System", FontWeight.NORMAL,14),5,TextAlignment.CENTER,0,0,true);
         trovaChiaveBobButton = creaAttaccoButton(bob);
@@ -125,6 +127,7 @@ public class VHome implements Initializable {
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                System.out.println("E PARTITO L'EVENTOOOOO");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chiave di "+nomeClient);
                 switch (nomeClient){
@@ -208,6 +211,9 @@ public class VHome implements Initializable {
 
                     leggiUltimoMessaggioAliceButton = creaLeggiMessaggioButton(alice);
                     aliceVBox.getChildren().add(leggiUltimoMessaggioAliceButton);
+
+                    trovaChiaveAliceButton = creaAttaccoButton(alice);
+                    eveVBox.getChildren().addAll(trovaChiaveAliceButton);
                 } else {
                     creaScrollPane(alice);
                 }
