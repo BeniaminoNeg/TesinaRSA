@@ -31,12 +31,14 @@ public class GeneratoreChiavi {
 	 * Numero di bit per rappresentare il numero primo P.
 	 */
 	private static int _numeroBitChiaveP = 512;
+	private static int _numeroBitChiavePAttacco = 28;
 	/**
 	 * Numero di bit per rappresentare il numero primo q. Si utilizzano meno bit
 	 * rispetto a quelli utilizzati per rappresentare il numero primo p, per evitare
 	 * di essere soggetti alla fattorizzazione di Fermat.
 	 */
 	private static int _numeroBitChiaveQ = _numeroBitChiaveP - 10;
+	private static int _numeroBitChiaveQAttacco = _numeroBitChiavePAttacco - 10;
 	/**
 	 * Limite superiore alla ricerca dei numeri primi, utilizzati per testare
 	 * che un generico numero intero, non sia un multiplo di essi. Si utilizza a monte
@@ -52,7 +54,13 @@ public class GeneratoreChiavi {
 		// Oggetto responsabile della creazione del numero randomico
 		SecureRandom secureRandom = new SecureRandom();
 		// Il punto di partenza � un numero intero compreso tra 0 e 2^(_numBitP-1).
-		BigInteger numberStart_p = new BigInteger(_numeroBitChiaveP, secureRandom);
+		BigInteger numberStart_p;
+		if (sicuro==true) {
+			numberStart_p = new BigInteger(_numeroBitChiaveP, secureRandom);
+		} else {
+			numberStart_p = new BigInteger(_numeroBitChiavePAttacco, secureRandom);
+		}
+
 		// Calcolo p e p-1
 		p = getFirstPrimeNumberAfterNumber(numberStart_p, _accuracy);
 		BigInteger p_meno_1 = p.subtract(BigInteger.ONE);
@@ -67,7 +75,7 @@ public class GeneratoreChiavi {
 			/* Calcolo q e q-1. Per calcolare q, prendo il primo successivo a p. 
 			 * In questo modo molto probabilmente p < q < 2p
 			 */
-			q = getFirstPrimeNumberAfterNumber(p, _accuracy);
+			q = getFirstPrimeNumberAfterNumber(p.add(BigInteger.ONE), _accuracy);
 			q_meno_1 = q.subtract(BigInteger.ONE);
 		}
 		// Calcolo fi_n = (p-1)*(q-1)
