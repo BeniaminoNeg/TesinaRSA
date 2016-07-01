@@ -1,22 +1,22 @@
 /**
- * 
+ *
  */
 package com.RSA.model.algoritmoTestPrimalita;
 
 import java.math.BigInteger;
 
 /**
- * Questa interfaccia contiene l'algoritmo per verificare la primalità di un numero primo - Design Pattern Strategy
- * 
- * @author Eugenio
+ * Questa interfaccia contiene l'algoritmo per verificare la primalitï¿½ di un numero primo - Design Pattern Strategy
+ *
+ * @author Emanuele
  */
 public interface IAlgoritmoTestPrimalitaStrategy {
-	/**
-	 * Testa la primalità del numero intero dispari n, per diverse volte.
-	 * 
-	 * @param n Numero intero da testare.
-	 * @param times Numero di volte in cui effettuare il test.
-	 * @return True se il numero è probabilmente primo. False se è composto. 
-	 */
-	public boolean testaPrimalitaIntero(BigInteger n, int times);
+    /**
+     * Testa la primalitï¿½ del numero intero dispari n, per diverse volte.
+     *
+     * @param n     Numero intero da testare.
+     * @param times Numero di volte in cui effettuare il test.
+     * @return True se il numero ï¿½ probabilmente primo. False se ï¿½ composto.
+     */
+    public boolean testaPrimalitaIntero(BigInteger n, int times);
 }

@@ -17,10 +17,10 @@ public class CreatoreRadioButton {
     public static List<RadioButton> creaRadioButton(List<String> testi, Font font, TextAlignment textAlignment, double paddingSinistraPercentuale, double paddingDestraPercentuale, boolean visibile) {
         List lista = new ArrayList<>();
         ToggleGroup toggleGroup = new ToggleGroup();
-        for (String testo: testi) {
+        for (String testo : testi) {
             RadioButton radioButton = new RadioButton(testo);
             radioButton.setToggleGroup(toggleGroup);
-            layoutizeRadioButton(radioButton,font,textAlignment,paddingSinistraPercentuale,paddingDestraPercentuale,visibile);
+            layoutizeRadioButton(radioButton, font, textAlignment, paddingSinistraPercentuale, paddingDestraPercentuale, visibile);
             lista.add(radioButton);
         }
         return lista;
@@ -29,7 +29,7 @@ public class CreatoreRadioButton {
     public static void layoutizeRadioButton(RadioButton radioButton, Font font, TextAlignment textAlignment, double paddingSinistraPercentuale, double paddingDestraPercentuale, boolean visibile) {
         radioButton.setFont(font);
         radioButton.setTextAlignment(textAlignment);
-        radioButton.setStyle("-fx-padding: 0px "+ ConvertitorePx.percentualeToPxLarghezza(paddingDestraPercentuale)+"px 0px "+ConvertitorePx.percentualeToPxLarghezza(paddingSinistraPercentuale)+"px;");
+        radioButton.setStyle("-fx-padding: 0px " + ConvertitorePx.percentualeToPxLarghezza(paddingDestraPercentuale) + "px 0px " + ConvertitorePx.percentualeToPxLarghezza(paddingSinistraPercentuale) + "px;");
         radioButton.setVisible(visibile);
     }
 

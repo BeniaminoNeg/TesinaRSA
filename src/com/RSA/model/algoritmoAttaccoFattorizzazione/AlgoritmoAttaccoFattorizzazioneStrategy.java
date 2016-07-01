@@ -1,6 +1,5 @@
 package com.RSA.model.algoritmoAttaccoFattorizzazione;
 
-import com.RSA.model.algoritmoRSA.Client;
 import com.RSA.model.algoritmoRSA.PrivateKey;
 import com.RSA.model.algoritmoRSA.PublicKey;
 
@@ -16,7 +15,7 @@ public class AlgoritmoAttaccoFattorizzazioneStrategy implements IAlgoritmoAttacc
         double radice = Math.sqrt(n);
         radice = Math.ceil(radice);
         if (radice % 2 == 0) {
-            radice = radice+1;
+            radice = radice + 1;
         }
         Integer radice1 = (int) radice;
         BigInteger rad = new BigInteger(radice1.toString());
@@ -27,7 +26,7 @@ public class AlgoritmoAttaccoFattorizzazioneStrategy implements IAlgoritmoAttacc
         BigInteger q = publicKeyClient.get_n().divide(p);
         BigInteger fi_n = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
         BigInteger d = publicKeyClient.get_e().modInverse(fi_n);
-        PrivateKey privateKey = new PrivateKey(p,q,d);
+        PrivateKey privateKey = new PrivateKey(p, q, d);
         return privateKey;
     }
 }

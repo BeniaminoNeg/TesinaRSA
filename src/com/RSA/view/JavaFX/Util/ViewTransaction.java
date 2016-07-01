@@ -21,13 +21,13 @@ public class ViewTransaction {
         return ourInstance;
     }
 
-    public void goTo(Node transactionNode,String arrivo) {
+    public void goTo(Node transactionNode, String arrivo) {
         Stage stage;
         Parent root = null;
 
         stage = (Stage) transactionNode.getScene().getWindow();
         try {
-            root = FXMLLoader.load(getClass().getResource("../JavaFX/FXML/"+arrivo+".fxml"));
+            root = FXMLLoader.load(getClass().getResource("../JavaFX/FXML/" + arrivo + ".fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

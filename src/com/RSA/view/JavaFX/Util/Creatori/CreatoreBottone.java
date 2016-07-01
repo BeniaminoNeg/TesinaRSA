@@ -17,11 +17,11 @@ public class CreatoreBottone {
         return bottone;
     }
 
-    public static void layoutizeButton(Button bottone, Pos alignment, Font font, double insets,boolean visibile) {
+    public static void layoutizeButton(Button bottone, Pos alignment, Font font, double insets, boolean visibile) {
         bottone.setAlignment(alignment);
         bottone.setFont(font);
         double insetsIntero = ConvertitorePx.percentualeToPxLarghezza(insets);
-        bottone.setStyle("-fx-border-insets: "+insetsIntero+"px;");
+        bottone.setStyle("-fx-border-insets: " + insetsIntero + "px;");
         bottone.setVisible(visibile);
     }
 

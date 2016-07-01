@@ -19,7 +19,7 @@ public class CreatoreHBox {
         hBox.setAlignment(posizione);
         double paddingAlto = ConvertitorePx.percentualeToPxAltezza(paddingAltoPercentuale);
         double paddingBasso = ConvertitorePx.percentualeToPxAltezza(paddingBassoPercentuale);
-        hBox.setStyle("-fx-padding: "+paddingAlto+"px 0px "+paddingBasso+"px 0px;");
+        hBox.setStyle("-fx-padding: " + paddingAlto + "px 0px " + paddingBasso + "px 0px;");
         double maxWidth = ConvertitorePx.percentualeToPxLarghezza(maxWidthPercentuale);
         hBox.setMaxWidth(maxWidth);
         hBox.setMinWidth(maxWidth);

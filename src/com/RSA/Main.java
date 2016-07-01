@@ -1,8 +1,8 @@
 /**
- * 
+ *
  */
 package com.RSA;
-import com.RSA.view.VHome;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,26 +11,25 @@ import javafx.stage.Stage;
 
 /**
  * @author Beniamino
- *
  */
 public class Main extends Application {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("view/JavaFX/xml/home.fxml"));
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("view/JavaFX/xml/home.fxml"));
 
-		primaryStage.setTitle("Rsa");
-		primaryStage.setFullScreen(true);
-		primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Rsa");
+        primaryStage.setFullScreen(true);
+        primaryStage.setScene(new Scene(root));
 
-		//primaryStage.getIcons().add(new Image("file:../../../../Image/tankicon.png"));
+        //primaryStage.getIcons().add(new Image("file:../../../../Image/tankicon.png"));
 
         /*
         primaryStage.getIcons().add(
@@ -39,7 +38,7 @@ public class Main extends Application {
         */
 
 
-		primaryStage.show();
+        primaryStage.show();
 
-	}
+    }
 }
