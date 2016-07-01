@@ -1,9 +1,6 @@
 package com.RSA.view.JavaFX.View;
 
-import com.RSA.model.algoritmoRSA.Client;
-import com.RSA.model.algoritmoRSA.Cracker;
-import com.RSA.model.algoritmoRSA.GeneratoreChiavi;
-import com.RSA.model.algoritmoRSA.MessaggioChiaro;
+import com.RSA.model.algoritmoRSA.*;
 import com.RSA.view.JavaFX.Util.ConvertitorePx;
 import com.RSA.view.JavaFX.Util.Creatori.*;
 import javafx.event.EventHandler;
@@ -19,6 +16,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
+import javax.swing.*;
 import java.math.BigInteger;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,6 +38,9 @@ public class VHome implements Initializable {
     public Button leggiUltimoMessaggioAliceButton;
     public Button leggiUltimoMessaggioBobButton;
 
+    public Button trovaChiaveBobButton;
+    public Button trovaChiaveAliceButton;
+
     public ToggleGroup sicuraBobToggleGroup;
     public ToggleGroup sicuraAliceToggleGroup;
 
@@ -55,8 +56,8 @@ public class VHome implements Initializable {
         this.homeVBox.setPrefSize(width,height);
         HBox wrapperHBox = CreatoreHBox.creaHBox(Pos.CENTER,0,0,100,true);
         VBox bobVBox = creaBob();
-        VBox eveVBox = creaEve();
         VBox aliceVBox = creaAlice();
+        VBox eveVBox = creaEve();
         wrapperHBox.getChildren().addAll(bobVBox,eveVBox,aliceVBox);
         this.homeVBox.getChildren().add(wrapperHBox);
     }
@@ -65,21 +66,29 @@ public class VHome implements Initializable {
         VBox bobVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label bobNome = CreatoreLabel.creaLabel("Bob", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         List<String> testi = new ArrayList<>();
-        testi.add("Insicura");
-        testi.add("Sicura");
+        testi.add("Vulnerabile");
+        testi.add("Non Vulnerabile");
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.LEFT,1,1,true);
         sicuraBobToggleGroup = radio.get(0).getToggleGroup();
         sicuraBobToggleGroup.selectToggle(radio.get(1));
         Button bobKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
+        if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
+            bob = new Client("Bob",true);
+        } else {
+            bob = new Client("Bob",false);
+        }
         bobKeyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
             public void handle(MouseEvent event) {
                 bobKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneBob;
                 if (scrollPaneBob == null) {
-                    if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+                    if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
+                        System.out.println("Bob non vulner");
                         bob = new Client("Bob",true);
                     } else {
+                        System.out.println("Bob vulner");
                         bob = new Client("Bob",false);
                     }
                     scrollPaneBob = creaScrollPane(bob);
@@ -99,10 +108,67 @@ public class VHome implements Initializable {
 
 
     public VBox creaEve() {
+        eve = new Cracker();
         VBox eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
-        eveVBox.getChildren().addAll(eveNome);
+        trovaChiaveBobButton = creaAttaccoButton(bob);
+        trovaChiaveAliceButton = creaAttaccoButton(alice);
+        eveVBox.getChildren().addAll(eveNome,trovaChiaveBobButton,trovaChiaveAliceButton);
         return eveVBox;
+    }
+
+    private Button creaAttaccoButton(Client client) {
+        String nomeClient = client.get_nomeClient();
+        Button bottone = CreatoreBottone.creaBottone("Trova la chiave di "+nomeClient,Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0,true);
+        bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chiave di "+nomeClient);
+
+                switch (nomeClient){
+                    case "Bob":
+                        if (bob != null) {
+                            // Recupero la chiave di Bob.
+                            PublicKey publicKeyBob = ArchivioChiaviPubbliche.getInstance().ottieniChiaveClient("Bob");
+                            // Provo a calcolare la chiave privata di Bob.
+                            PrivateKey privateKeyBob = eve.ottieniChiavePrivataDaChiavePubblica(publicKeyBob);
+                            // Controllo se ho ottenuto la chiave
+                            //System.out.println("Chiave Bob " + privateKeyBob.toString());
+                            if (privateKeyBob != null) {
+                                String messaggio = "P: " + privateKeyBob.get_p().toString() + "\n Q:" + privateKeyBob.get_q().toString() + "\n D: " + privateKeyBob.get_d().toString();
+                                alert.setContentText(messaggio);
+                            } else {
+                                alert.setContentText("Chiave non trovata!");
+                            }
+                        } else {
+                            alert.setContentText("Bob non � stato inizializzato!");
+                        }
+                        break;
+                    case "Alice":
+                        if (alice != null) {
+                            // Recupero la chiave di Alice.
+                            PublicKey publicKeyAlice = ArchivioChiaviPubbliche.getInstance().ottieniChiaveClient("Alice");
+                            // Provo a calcolare la chiave privata di Alice.
+                            PrivateKey privateKeyAlice = eve.ottieniChiavePrivataDaChiavePubblica(publicKeyAlice);
+                            // Controllo se ho ottenuto la chiave
+                            //System.out.println("Chiave Bob " + privateKeyBob.toString());
+                            if (privateKeyAlice != null) {
+                                String messaggio = "P: " + privateKeyAlice.get_p().toString() + "\n Q:" + privateKeyAlice.get_q().toString() + "\n D: " + privateKeyAlice.get_d().toString();
+                                alert.setContentText(messaggio);
+                            } else {
+                                alert.setContentText("Chiave non trovata!");
+                            }
+                        } else {
+                            alert.setContentText("Alice non � stato inizializzato!");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        return bottone;
     }
 
     public VBox creaAlice() {
@@ -110,12 +176,12 @@ public class VHome implements Initializable {
         Label aliceNome = CreatoreLabel.creaLabel("Alice", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         Button aliceKeyButton = CreatoreBottone.creaBottone("Genera Chiave",Pos.CENTER,Font.font("System",FontWeight.BOLD,16),0.5,true);
         List<String> testi = new ArrayList<>();
-        testi.add("Insicura");
-        testi.add("Sicura");
+        testi.add("Vulnerabile");
+        testi.add("Non Vulnerabile");
         List<RadioButton> radio = CreatoreRadioButton.creaRadioButton(testi,Font.font("System", FontWeight.BOLD,14),TextAlignment.CENTER,1,1,true);
         sicuraAliceToggleGroup=radio.get(0).getToggleGroup();
         sicuraAliceToggleGroup.selectToggle(radio.get(1));
-        if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+        if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
             alice = new Client("Alice",true);
         } else {
             alice = new Client("Alice",false);
@@ -126,7 +192,7 @@ public class VHome implements Initializable {
                 aliceKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneAlice;
                 if (scrollPaneAlice == null) {
-                    if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+                    if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
                         alice = new Client("Alice",true);
                     } else {
                         alice = new Client("Alice",false);
@@ -205,6 +271,8 @@ public class VHome implements Initializable {
                     }
                     client.inviaMessaggioToClient(messaggioChiaro);
                 }
+
+
             }
         });
         return bottone;
