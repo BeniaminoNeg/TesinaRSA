@@ -81,14 +81,14 @@ public class VHome implements Initializable {
             public void handle(MouseEvent event) {
                 bobKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneBob;
+                if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
+                    System.out.println("Bob non vulner");
+                    bob = new Client("Bob",true);
+                } else {
+                    System.out.println("Bob vulner");
+                    bob = new Client("Bob",false);
+                }
                 if (scrollPaneBob == null) {
-                    if (((RadioButton)sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
-                        System.out.println("Bob non vulner");
-                        bob = new Client("Bob",true);
-                    } else {
-                        System.out.println("Bob vulner");
-                        bob = new Client("Bob",false);
-                    }
                     scrollPaneBob = creaScrollPane(bob);
                     bobVBox.getChildren().add(scrollPaneBob);
                     scriviMessaggioBobButton = creaMessaggioButton(bob);
@@ -111,7 +111,12 @@ public class VHome implements Initializable {
 
     public VBox creaEve() {
         eve = new Cracker();
+<<<<<<< HEAD
         eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
+=======
+        eve.setAttacco("Wiener");
+        VBox eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
+>>>>>>> origin/master
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
         eveVBox.getChildren().addAll(eveNome);
         return eveVBox;
@@ -126,7 +131,6 @@ public class VHome implements Initializable {
                 System.out.println("E PARTITO L'EV3NTOOOOO");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chiave di "+nomeClient);
-
                 switch (nomeClient){
                     case "Bob":
                         if (bob != null) {
@@ -137,7 +141,7 @@ public class VHome implements Initializable {
                             // Controllo se ho ottenuto la chiave
                             //System.out.println("Chiave Bob " + privateKeyBob.toString());
                             if (privateKeyBob != null) {
-                                String messaggio = "P: " + privateKeyBob.get_p().toString() + "\n Q:" + privateKeyBob.get_q().toString() + "\n D: " + privateKeyBob.get_d().toString();
+                                String messaggio = "P: " + privateKeyBob.get_p().toString() + "\nQ:" + privateKeyBob.get_q().toString() + "\nD: " + privateKeyBob.get_d().toString();
                                 alert.setContentText(messaggio);
                             } else {
                                 alert.setContentText("Chiave non trovata!");
@@ -145,6 +149,7 @@ public class VHome implements Initializable {
                         } else {
                             alert.setContentText("Bob non � stato inizializzato!");
                         }
+                        alert.showAndWait();
                         break;
                     case "Alice":
                         if (alice != null) {
@@ -155,7 +160,7 @@ public class VHome implements Initializable {
                             // Controllo se ho ottenuto la chiave
                             //System.out.println("Chiave Bob " + privateKeyBob.toString());
                             if (privateKeyAlice != null) {
-                                String messaggio = "P: " + privateKeyAlice.get_p().toString() + "\n Q:" + privateKeyAlice.get_q().toString() + "\n D: " + privateKeyAlice.get_d().toString();
+                                String messaggio = "P: " + privateKeyAlice.get_p().toString() + "\nQ:" + privateKeyAlice.get_q().toString() + "\nD: " + privateKeyAlice.get_d().toString();
                                 alert.setContentText(messaggio);
                             } else {
                                 alert.setContentText("Chiave non trovata!");
@@ -163,6 +168,7 @@ public class VHome implements Initializable {
                         } else {
                             alert.setContentText("Alice non � stato inizializzato!");
                         }
+                        alert.showAndWait();
                         break;
                     default:
                         break;
@@ -192,12 +198,12 @@ public class VHome implements Initializable {
             public void handle(MouseEvent event) {
                 aliceKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneAlice;
+                if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
+                    alice = new Client("Alice",true);
+                } else {
+                    alice = new Client("Alice",false);
+                }
                 if (scrollPaneAlice == null) {
-                    if (((RadioButton)sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
-                        alice = new Client("Alice",true);
-                    } else {
-                        alice = new Client("Alice",false);
-                    }
                     scrollPaneAlice = creaScrollPane(alice);
                     aliceVBox.getChildren().add(scrollPaneAlice);
 
@@ -231,7 +237,7 @@ public class VHome implements Initializable {
             } else {
                 sicuraToggleGroup = sicuraAliceToggleGroup;
             }
-            if (((RadioButton)sicuraToggleGroup.getSelectedToggle()).getText().equals("Sicura")) {
+            if (((RadioButton)sicuraToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
                 GeneratoreChiavi.generaChiavi(client,true);
             } else {
                 GeneratoreChiavi.generaChiavi(client,false);
