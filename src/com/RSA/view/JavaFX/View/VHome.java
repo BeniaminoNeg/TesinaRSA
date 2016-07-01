@@ -112,9 +112,10 @@ public class VHome implements Initializable {
         eve.setAttacco("Wiener");
         VBox eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER,0.5,0.5,33.3,true);
         Label eveNome = CreatoreLabel.creaLabel("Eve", Font.font("System", FontWeight.BOLD,16),5, TextAlignment.CENTER,0,0,true);
+        Label tipologiaAttacco = CreatoreLabel.creaLabel("Tipologia attacco:",Font.font("System", FontWeight.NORMAL,14),5,TextAlignment.CENTER,0,0,true);
         trovaChiaveBobButton = creaAttaccoButton(bob);
         trovaChiaveAliceButton = creaAttaccoButton(alice);
-        eveVBox.getChildren().addAll(eveNome,trovaChiaveBobButton,trovaChiaveAliceButton);
+        eveVBox.getChildren().addAll(eveNome,tipologiaAttacco,trovaChiaveBobButton,trovaChiaveAliceButton);
         return eveVBox;
     }
 
