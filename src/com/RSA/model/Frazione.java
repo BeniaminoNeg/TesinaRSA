@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * Questa classe rappresenta una frazione.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class Frazione {
 

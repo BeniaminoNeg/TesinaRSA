@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * @author Beniamino
+ * @author emanuele & Beniamino
  */
 public class Main extends Application {
 

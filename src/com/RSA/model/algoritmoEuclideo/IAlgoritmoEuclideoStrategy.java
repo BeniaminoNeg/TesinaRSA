@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Questa interfaccia contiene il metodo per il calcolo dell'MCD tra due numeri interi. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public interface IAlgoritmoEuclideoStrategy {
     /**

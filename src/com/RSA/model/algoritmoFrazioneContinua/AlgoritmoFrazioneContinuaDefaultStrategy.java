@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Questa classe rappresenta una implementazione di default per il calcolo delle frazioni continue. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class AlgoritmoFrazioneContinuaDefaultStrategy implements IAlgoritmoFrazioneContinuaStrategy {
 

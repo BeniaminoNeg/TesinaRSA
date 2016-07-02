@@ -6,7 +6,7 @@ package com.RSA.model.algoritmoRSA;
 /**
  * Questa classe rappresenta l'astrazione pi� alta per un messaggio.
  *
- * @author Home
+ * @author emanuele & beniamino
  */
 public abstract class Messaggio {
 

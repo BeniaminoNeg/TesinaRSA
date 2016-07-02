@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Questa intefaccia contiene il metodo per calcolare le frazioni continue. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public interface IAlgoritmoFrazioneContinuaStrategy {
     /**

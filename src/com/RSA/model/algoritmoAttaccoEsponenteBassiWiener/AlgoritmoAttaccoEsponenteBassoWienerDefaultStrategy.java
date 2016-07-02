@@ -20,7 +20,7 @@ import java.util.List;
  * Questa classe rappresenta l'implementazione di default per l'attacco dell'algoritmo RSA, quando vengono
  * scelti degli esponenenti di cifratura / decifratura bassi. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class AlgoritmoAttaccoEsponenteBassoWienerDefaultStrategy implements IAlgoritmoAttaccoEsponenteBassoWienerStrategy {
 

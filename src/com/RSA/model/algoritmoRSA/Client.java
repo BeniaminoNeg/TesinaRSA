@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Questa classe rappresenta il generico client nel dominio RSA.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class Client {
 

@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class OttieniChiaveClientListener extends MouseAdapter {
 

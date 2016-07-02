@@ -3,7 +3,7 @@ package com.RSA.view.JavaFX.Util;
 import javafx.stage.Screen;
 
 /**
- * Created by emanuele on 24/05/16.
+ * Created by emanuele & beniamino on 24/05/16.
  */
 public class ConvertitorePx {
 

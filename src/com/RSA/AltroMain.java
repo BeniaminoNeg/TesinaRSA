@@ -5,7 +5,7 @@ import com.RSA.model.algoritmoRSA.Client;
 import java.math.BigInteger;
 
 /**
- * Created by emanuele on 30/06/16.
+ * Created by emanuele & beniamino on 30/06/16.
  */
 public class AltroMain {
     /**

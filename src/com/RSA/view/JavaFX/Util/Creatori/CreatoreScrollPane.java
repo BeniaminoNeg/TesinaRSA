@@ -5,7 +5,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Created by emanuele on 01/06/16.
+ * Created by emanuele & beniamino on 01/06/16.
  */
 public class CreatoreScrollPane {
 

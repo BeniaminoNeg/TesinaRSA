@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * Questa classe rappresenta il generico messaggio cifrato.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class MessaggioCifrato extends Messaggio {
 

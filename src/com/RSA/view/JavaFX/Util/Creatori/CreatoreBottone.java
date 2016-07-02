@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
 /**
- * Created by emanuele on 31/05/16.
+ * Created by emanuele & beniamino on 31/05/16.
  */
 public class CreatoreBottone {
 

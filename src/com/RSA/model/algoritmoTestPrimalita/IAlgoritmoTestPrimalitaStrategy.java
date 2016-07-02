@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * Questa interfaccia contiene l'algoritmo per verificare la primalit� di un numero primo - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public interface IAlgoritmoTestPrimalitaStrategy {
     /**

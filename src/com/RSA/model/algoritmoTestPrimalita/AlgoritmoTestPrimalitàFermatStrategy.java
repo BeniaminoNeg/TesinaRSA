@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
- * Created by beniamino on 30/06/16.
+ * Created by emanuele & beniamino on 30/06/16.
  */
 public class AlgoritmoTestPrimalitàFermatStrategy implements IAlgoritmoTestPrimalitaStrategy {
     @Override

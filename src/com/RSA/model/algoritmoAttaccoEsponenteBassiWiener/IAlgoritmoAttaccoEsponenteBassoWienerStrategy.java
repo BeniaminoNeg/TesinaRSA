@@ -9,7 +9,7 @@ import com.RSA.model.algoritmoRSA.PublicKey;
 /**
  * Questa interfaccia contiene l'algoritmo per l'attacco all'algoritmo RSA, quando vengono scelti esponenti di cifratura bassi. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public interface IAlgoritmoAttaccoEsponenteBassoWienerStrategy {
     /**

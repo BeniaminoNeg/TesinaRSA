@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Questa classe rappresenta l'archivio delle chiavi pubbliche dei client.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class ArchivioChiaviPubbliche {
     /**

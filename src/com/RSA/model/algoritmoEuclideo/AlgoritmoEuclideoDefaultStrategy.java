@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Questo classe rappresenta l'implementazione di default dell'algoritmo euclideo per il calcolo del MCD tra due numeri interi. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class AlgoritmoEuclideoDefaultStrategy implements IAlgoritmoEuclideoStrategy {
 

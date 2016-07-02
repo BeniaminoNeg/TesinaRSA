@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * Questa classe contiene differenti metodi, utili per il calcolo con numeri interi.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class UtilityIntegerNumber {
     /**

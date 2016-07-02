@@ -18,7 +18,7 @@ import java.util.List;
  * Classe con il compito di generare le chiavi per i client. Genera dunque per ogni client che ne
  * fa richiesta la chiave pubblica, con la chiave privata associata.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class GeneratoreChiavi {
     /**

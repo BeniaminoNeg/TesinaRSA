@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * Questa classe rappresenta la chiave pubblica dell'algoritmo RSA.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class PublicKey {
 

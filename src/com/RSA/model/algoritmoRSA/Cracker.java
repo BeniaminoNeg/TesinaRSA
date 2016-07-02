@@ -12,7 +12,7 @@ import com.RSA.model.algoritmoAttaccoFattorizzazione.IAlgoritmoAttaccoFattorizza
  * Questa classe rappresenta un generico cracker (Eve) che vuole cercare di ottenere la chiave privata
  * di un client (Bob, Alice).
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class Cracker {
     /**

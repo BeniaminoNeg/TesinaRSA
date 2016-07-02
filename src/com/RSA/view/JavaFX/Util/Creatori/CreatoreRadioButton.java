@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by emanuele on 30/06/16.
+ * Created by emanuele & beniamino on 30/06/16.
  */
 public class CreatoreRadioButton {
 

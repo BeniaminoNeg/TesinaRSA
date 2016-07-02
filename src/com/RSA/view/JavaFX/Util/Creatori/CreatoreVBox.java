@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 /**
- * Created by emanuele on 31/05/16.
+ * Created by emanuele & beniamino on 31/05/16.
  */
 public class CreatoreVBox extends VBox {
 

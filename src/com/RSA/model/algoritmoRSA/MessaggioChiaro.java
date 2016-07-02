@@ -6,7 +6,7 @@ package com.RSA.model.algoritmoRSA;
 /**
  * Questa classe rappresenta il generico messaggio in chiaro.
  *
- * @author Home
+ * @author emanuele & beniamino
  */
 public class MessaggioChiaro extends Messaggio {
 

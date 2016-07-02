@@ -6,7 +6,7 @@ import com.RSA.model.algoritmoRSA.PublicKey;
 import java.math.BigInteger;
 
 /**
- * Created by emanuele on 01/07/16.
+ * Created by emanuele & beniamino on 01/07/16.
  */
 public class AlgoritmoAttaccoFattorizzazioneStrategy implements IAlgoritmoAttaccoFattorizzazioneStrategy {
     @Override

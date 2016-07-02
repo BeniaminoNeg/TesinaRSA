@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * @author Home
+ * @author emanuele & beniamino
  */
 public class VHome extends JFrame {
 

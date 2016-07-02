@@ -9,7 +9,7 @@ import java.math.BigInteger;
  * Questa classe rappresenta il risultato che si ottiene dalla generica iterazione dell'algoritmo euclideo per il calcolo
  * del Massimo Comune Divisore tra due numeri interi.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class RisultatoIterazioneAlgoritmoEuclideo {
 

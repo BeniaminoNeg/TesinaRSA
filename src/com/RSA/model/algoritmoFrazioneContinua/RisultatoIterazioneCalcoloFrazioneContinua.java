@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * Questa classe rappresenta il risultato che si ottiene alla generica iterazione del
  * calcolo della frazione continua di un numero realte.
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class RisultatoIterazioneCalcoloFrazioneContinua {
 

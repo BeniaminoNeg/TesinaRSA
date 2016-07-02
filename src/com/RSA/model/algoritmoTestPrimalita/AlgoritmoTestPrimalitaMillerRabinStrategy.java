@@ -11,7 +11,7 @@ import java.math.BigInteger;
  * Questa classe rappresenta l'implementazione per verificare la primalit� di un numero intero mediante l'applicazione
  * dell'algoritmo di Miller-Rabin. - Design Pattern Strategy
  *
- * @author Emanuele
+ * @author emanuele & beniamino
  */
 public class AlgoritmoTestPrimalitaMillerRabinStrategy implements IAlgoritmoTestPrimalitaStrategy {
     /**

@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * @author Home
+ * @author emanuele & beniamino
  */
 public class InizializzaClientListener extends MouseAdapter {
     /**

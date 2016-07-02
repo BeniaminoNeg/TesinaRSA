@@ -13,7 +13,7 @@ import java.math.BigInteger;
  * convertita in un numero intero e successivamente cifrata seguendo i passi dell'algoritmo. Ovviamente pu� effettuare
  * anche l'operazione inversa, prendendo in input una triade con un integer, fornendo in output una triade con una stringa.
  *
- * @author Home
+ * @author emanuele & beniamino
  */
 public class MacchinaRSA {
     /**

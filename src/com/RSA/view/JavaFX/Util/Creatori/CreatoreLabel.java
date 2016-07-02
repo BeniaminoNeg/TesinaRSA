@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- * Created by emanuele on 31/05/16.
+ * Created by emanuele & beniamino on 31/05/16.
  */
 public class CreatoreLabel {
 
