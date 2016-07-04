@@ -128,7 +128,7 @@ public class UtilityIntegerNumber {
      */
     public static BigInteger generaInteroCasualeInIntervallo(BigInteger min, BigInteger max) {
         /*
-    	 *  Controllo che il max non sia minore del min. In tal caso inverto le parti.
+         *  Controllo che il max non sia minore del min. In tal caso inverto le parti.
     	 */
         if (max.compareTo(min) < 0) {
             BigInteger tmp = min;

@@ -285,21 +285,41 @@ public class VHome implements Initializable {
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MessaggioCifrato messaggioCifrato = utente.getUltimoMessaggioRicevutoCifrato();
-                if (messaggioCifrato != null) {
-                    BigInteger messaggioCifrato1 = messaggioCifrato.get_messaggioCifrato();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ultimo Messaggio");
-                    alert.setHeaderText("Ultimo messaggio ricevuto");
-                    alert.setContentText("Messaggio in chiaro: " + utente.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() + "\n" + "Messaggio cifrato: " + messaggioCifrato1);
-                    alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
-                    alert.showAndWait();
+                MessaggioCifrato messaggioCifrato;
+                if (utente.get_nomeClient().equals("Bob")) {
+                    messaggioCifrato = bob.getUltimoMessaggioRicevutoCifrato();
+                    if (messaggioCifrato != null) {
+                        BigInteger messaggioCifrato1 = messaggioCifrato.get_messaggioCifrato();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Ultimo Messaggio");
+                        alert.setHeaderText("Ultimo messaggio ricevuto");
+                        alert.setContentText("Messaggio in chiaro: " + bob.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() + "\n" + "Messaggio cifrato: " + messaggioCifrato1);
+                        alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Ultimo Messaggio");
+                        alert.setHeaderText("Ultimo messaggio ricevuto");
+                        alert.setContentText("Nessun messaggio ricevuto");
+                        alert.showAndWait();
+                    }
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ultimo Messaggio");
-                    alert.setHeaderText("Ultimo messaggio ricevuto");
-                    alert.setContentText("Nessun messaggio ricevuto");
-                    alert.showAndWait();
+                    messaggioCifrato = alice.getUltimoMessaggioRicevutoCifrato();
+                    if (messaggioCifrato != null) {
+                        BigInteger messaggioCifrato1 = messaggioCifrato.get_messaggioCifrato();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Ultimo Messaggio");
+                        alert.setHeaderText("Ultimo messaggio ricevuto");
+                        alert.setContentText("Messaggio in chiaro: " + alice.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() + "\n" + "Messaggio cifrato: " + messaggioCifrato1);
+                        alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Ultimo Messaggio");
+                        alert.setHeaderText("Ultimo messaggio ricevuto");
+                        alert.setContentText("Nessun messaggio ricevuto");
+                        alert.showAndWait();
+                    }
                 }
             }
         });

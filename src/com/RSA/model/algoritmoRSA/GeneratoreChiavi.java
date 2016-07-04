@@ -73,7 +73,7 @@ public class GeneratoreChiavi {
             q_meno_1 = q.subtract(BigInteger.ONE);
         } else {
             /* Calcolo q e q-1. Per calcolare q, prendo il primo successivo a p.
-			 * In questo modo molto probabilmente p < q < 2p
+             * In questo modo molto probabilmente p < q < 2p
 			 */
             q = getFirstPrimeNumberAfterNumber(p.add(BigInteger.ONE), _accuracy);
             q_meno_1 = q.subtract(BigInteger.ONE);

@@ -35,7 +35,7 @@ public class AlgoritmoFrazioneContinuaDefaultStrategy implements IAlgoritmoFrazi
         BigInteger numeratoreIniziale = frazione.get_numeratore();
         BigInteger denominatoreIniziale = frazione.get_denominatore();
         /*
-		*  Calcolo l'MCD tra numeratore e denominatore in modo da poter utilizzare i quozienti 
+        *  Calcolo l'MCD tra numeratore e denominatore in modo da poter utilizzare i quozienti
 		*  trovati come gli 'ai' per il calcolo delle frazioni continue.
 		*/
         IAlgoritmoEuclideoStrategy algoritmoEuclideo = new AlgoritmoEuclideoDefaultStrategy();

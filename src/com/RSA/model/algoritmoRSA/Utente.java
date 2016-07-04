@@ -41,7 +41,7 @@ public class Utente {
      */
     public Utente(String nomeClient, Boolean sicuro) {
         /*
-		 *  Genero la chiave del client, in modo sicuro o 
+         *  Genero la chiave del client, in modo sicuro o
 		 *  insicuro in relazione alla scelta degli esponenti.
 		 */
         GeneratoreChiavi.generaChiavi(this, sicuro);
