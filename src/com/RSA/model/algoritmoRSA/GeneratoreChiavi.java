@@ -46,9 +46,9 @@ public class GeneratoreChiavi {
     private static BigInteger _upperBoundRicercaPrimi = new BigInteger("256");
 
     /**
-     * Metodo per generare la chiave pubblica e privata di un client come Alice o Bob.
+     * Metodo per generare la chiave pubblica e privata di un utente come Alice o Bob.
      */
-    public static void generaChiavi(Client client, Boolean sicuro) {
+    public static void generaChiavi(Utente utente, Boolean sicuro) {
         // Elementi della chiave
         BigInteger p = null, q = null, d = null, e = null, n = null, q_meno_1 = null;
         // Oggetto responsabile della creazione del numero randomico
@@ -110,12 +110,12 @@ public class GeneratoreChiavi {
             e = d.modInverse(fi_n);
         }
 
-        // Creo la chiave privata e pubblica del client
+        // Creo la chiave privata e pubblica del utente
         PrivateKey privateKeyClient = new PrivateKey(p, q, d);
         PublicKey publicKeyClient = new PublicKey(n, e);
-        // Setto le chiavi al client
-        client.set_privateKey(privateKeyClient);
-        client.set_publicKey(publicKeyClient);
+        // Setto le chiavi al utente
+        utente.set_privateKey(privateKeyClient);
+        utente.set_publicKey(publicKeyClient);
 
 //		TESTING
 //		

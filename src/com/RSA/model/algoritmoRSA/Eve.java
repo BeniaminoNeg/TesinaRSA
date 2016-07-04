@@ -14,7 +14,7 @@ import com.RSA.model.algoritmoAttaccoFattorizzazione.IAlgoritmoAttaccoFattorizza
  *
  * @author emanuele & beniamino
  */
-public class Cracker {
+public class Eve {
     /**
      * Metodo per cercare di ottenere la chiave privata di un client a partire dalla sua chiave pubblica.
      *

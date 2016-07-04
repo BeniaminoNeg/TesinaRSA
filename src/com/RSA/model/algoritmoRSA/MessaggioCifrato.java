@@ -24,7 +24,7 @@ public class MessaggioCifrato extends Messaggio {
      * @param _destinatario
      * @param _messaggioCifrato
      */
-    public MessaggioCifrato(Client _mittente, Client _destinatario, BigInteger _messaggioCifrato) {
+    public MessaggioCifrato(Utente _mittente, Utente _destinatario, BigInteger _messaggioCifrato) {
         super(_mittente, _destinatario);
         this._messaggioCifrato = _messaggioCifrato;
     }

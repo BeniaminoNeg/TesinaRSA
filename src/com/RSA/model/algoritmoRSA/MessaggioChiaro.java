@@ -19,7 +19,7 @@ public class MessaggioChiaro extends Messaggio {
      * @param _mittente
      * @param _destinatario
      */
-    public MessaggioChiaro(Client _mittente, Client _destinatario, String _messaggioChiaro) {
+    public MessaggioChiaro(Utente _mittente, Utente _destinatario, String _messaggioChiaro) {
         super(_mittente, _destinatario);
         this._messaggioChiaro = _messaggioChiaro;
     }

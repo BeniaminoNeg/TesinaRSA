@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author emanuele & beniamino
  */
-public class Client {
+public class Utente {
 
     /**
      * Nome univoco nel dominio dei client.
@@ -26,9 +26,9 @@ public class Client {
      */
     private PublicKey _publicKey;
     /**
-     * Macchina RSA utilizzata dal Client.
+     * Macchina RSA utilizzata dal Utente.
      */
-    private MacchinaRSA _macchinaRSA;
+    private CifraDecifraRSA _cifraDecifraRSA;
     /**
      * Lista dei messaggi cifrati ricevuti.
      */
@@ -39,7 +39,7 @@ public class Client {
      *
      * @param nomeClient Nome del client.
      */
-    public Client(String nomeClient, Boolean sicuro) {
+    public Utente(String nomeClient, Boolean sicuro) {
         /*
 		 *  Genero la chiave del client, in modo sicuro o 
 		 *  insicuro in relazione alla scelta degli esponenti.
@@ -47,21 +47,21 @@ public class Client {
         GeneratoreChiavi.generaChiavi(this, sicuro);
         // Inizializzo tutti gli attributi
         this._nomeClient = nomeClient;
-        this._macchinaRSA = new MacchinaRSA();
+        this._cifraDecifraRSA = new CifraDecifraRSA();
         this._messaggiRicevuti = new LinkedList<MessaggioCifrato>();
         // Aggiungo la chiave all'archivio delle chiavi pubbliche dei client.
-        ArchivioChiaviPubbliche.getInstance().aggiungiClient(this._nomeClient, this._publicKey);
+        CatalogoChiaviPubbliche.getInstance().aggiungiClient(this._nomeClient, this._publicKey);
 
     }
 
     /**
      * Metodo per inviare un messaggio cifrato ad un client.
      *
-     * @param messaggio Messaggio in chiaro da inviare ad un client.
+     * @param messaggioChiaro Messaggio in chiaro da inviare ad un client.
      */
     public void inviaMessaggioToClient(MessaggioChiaro messaggioChiaro) {
         // Si ottiene il messaggio cifrato attraverso la macchinaRSA.
-        MessaggioCifrato messaggioCifrato = _macchinaRSA.fromMessaggioChiaroToMessaggioCifrato(messaggioChiaro);
+        MessaggioCifrato messaggioCifrato = _cifraDecifraRSA.fromMessaggioChiaroToMessaggioCifrato(messaggioChiaro);
         // Si aggiunge il messaggio cifrato alla lista dei messaggi ricevuti dell'altro client.
         messaggioChiaro.get_destinatario().get_messaggiRicevuti().add(messaggioCifrato);
     }
@@ -81,7 +81,7 @@ public class Client {
             // Rimuovo dalla lista dei messaggi l'ultimo messaggio ricevuto.
             MessaggioCifrato messaggioCifrato = this._messaggiRicevuti.remove(indexLastMessage);
             // Ricavo il messaggio in chiaro dal messaggio cifrato.
-            messaggioChiaro = this._macchinaRSA.fromMessaggioCifratoToMessaggioChiaro(messaggioCifrato);
+            messaggioChiaro = this._cifraDecifraRSA.fromMessaggioCifratoToMessaggioChiaro(messaggioCifrato);
         }
 
         return messaggioChiaro;
@@ -149,17 +149,17 @@ public class Client {
     }
 
     /**
-     * @return the _macchinaRSA
+     * @return the _cifraDecifraRSA
      */
-    public MacchinaRSA get_macchinaRSA() {
-        return _macchinaRSA;
+    public CifraDecifraRSA get_cifraDecifraRSA() {
+        return _cifraDecifraRSA;
     }
 
     /**
-     * @param _macchinaRSA the _macchinaRSA to set
+     * @param _cifraDecifraRSA the _cifraDecifraRSA to set
      */
-    public void set_macchinaRSA(MacchinaRSA _macchinaRSA) {
-        this._macchinaRSA = _macchinaRSA;
+    public void set_cifraDecifraRSA(CifraDecifraRSA _cifraDecifraRSA) {
+        this._cifraDecifraRSA = _cifraDecifraRSA;
     }
 
     /**

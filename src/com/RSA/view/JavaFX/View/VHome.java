@@ -47,9 +47,9 @@ public class VHome implements Initializable {
 
     public VBox eveVBox;
 
-    public Client bob;
-    public Client alice;
-    public Cracker eve;
+    public Utente bob;
+    public Utente alice;
+    public Eve eve;
 
     public ComboBox<String> comboBox;
 
@@ -84,9 +84,9 @@ public class VHome implements Initializable {
                 bobKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneBob;
                 if (((RadioButton) sicuraBobToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
-                    bob = new Client("Bob", true);
+                    bob = new Utente("Bob", true);
                 } else {
-                    bob = new Client("Bob", false);
+                    bob = new Utente("Bob", false);
                 }
                 if (scrollPaneBob == null) {
                     scrollPaneBob = creaScrollPane(bob);
@@ -110,7 +110,7 @@ public class VHome implements Initializable {
 
 
     public VBox creaEve() {
-        eve = new Cracker();
+        eve = new Eve();
 
         eve.setAttacco("Wiener");
         eveVBox = CreatoreVBox.creaVBox(Pos.TOP_CENTER, 0.5, 0.5, 33.3, true);
@@ -128,8 +128,8 @@ public class VHome implements Initializable {
         return eveVBox;
     }
 
-    private Button creaAttaccoButton(Client client) {
-        String nomeClient = client.get_nomeClient();
+    private Button creaAttaccoButton(Utente utente) {
+        String nomeClient = utente.get_nomeClient();
         Button bottone = CreatoreBottone.creaBottone(" Trova la chiave di " + nomeClient, Pos.CENTER, Font.font("System", FontWeight.BOLD, 16), 0, true);
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -143,7 +143,7 @@ public class VHome implements Initializable {
                     case "Bob":
                         if (bob != null) {
                             // Recupero la chiave di Bob.
-                            PublicKey publicKeyBob = ArchivioChiaviPubbliche.getInstance().ottieniChiaveClient("Bob");
+                            PublicKey publicKeyBob = CatalogoChiaviPubbliche.getInstance().ottieniChiaveClient("Bob");
                             // Provo a calcolare la chiave privata di Bob.
                             PrivateKey privateKeyBob = eve.ottieniChiavePrivataDaChiavePubblica(publicKeyBob);
                             // Controllo se ho ottenuto la chiave
@@ -162,7 +162,7 @@ public class VHome implements Initializable {
                     case "Alice":
                         if (alice != null) {
                             // Recupero la chiave di Alice.
-                            PublicKey publicKeyAlice = ArchivioChiaviPubbliche.getInstance().ottieniChiaveClient("Alice");
+                            PublicKey publicKeyAlice = CatalogoChiaviPubbliche.getInstance().ottieniChiaveClient("Alice");
                             // Provo a calcolare la chiave privata di Alice.
                             PrivateKey privateKeyAlice = eve.ottieniChiavePrivataDaChiavePubblica(publicKeyAlice);
                             // Controllo se ho ottenuto la chiave
@@ -202,9 +202,9 @@ public class VHome implements Initializable {
                 aliceKeyButton.setText("Genera altre chiavi");
                 scrollPaneAttuale = scrollPaneAlice;
                 if (((RadioButton) sicuraAliceToggleGroup.getSelectedToggle()).getText().equals("Non Vulnerabile")) {
-                    alice = new Client("Alice", true);
+                    alice = new Utente("Alice", true);
                 } else {
-                    alice = new Client("Alice", false);
+                    alice = new Utente("Alice", false);
                 }
                 if (scrollPaneAlice == null) {
                     scrollPaneAlice = creaScrollPane(alice);
@@ -227,7 +227,7 @@ public class VHome implements Initializable {
         return aliceVBox;
     }
 
-    public ScrollPane creaScrollPane(Client client) {
+    public ScrollPane creaScrollPane(Utente utente) {
         VBox content = null;
         ScrollPane scrollPane = null;
         if (scrollPaneAttuale != null) {
@@ -239,19 +239,19 @@ public class VHome implements Initializable {
             scrollPane = CreatoreScrollPane.creaScrollPane(content, 31, 2, 2, true);
         }
         Label privata = CreatoreLabel.creaLabel("Private Key:", Font.font("System", FontWeight.BOLD, 16), 5, TextAlignment.LEFT, 0.5, 0, true);
-        Label p = CreatoreLabel.creaLabel("p: " + client.get_privateKey().get_p().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
-        Label q = CreatoreLabel.creaLabel("q: " + client.get_privateKey().get_q().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
-        Label d = CreatoreLabel.creaLabel("d: " + client.get_privateKey().get_d().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
+        Label p = CreatoreLabel.creaLabel("p: " + utente.get_privateKey().get_p().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
+        Label q = CreatoreLabel.creaLabel("q: " + utente.get_privateKey().get_q().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
+        Label d = CreatoreLabel.creaLabel("d: " + utente.get_privateKey().get_d().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
         Label pubblica = CreatoreLabel.creaLabel("Public Key:", Font.font("System", FontWeight.BOLD, 16), 5, TextAlignment.LEFT, 0.5, 0, true);
-        Label n = CreatoreLabel.creaLabel("n: " + client.get_publicKey().get_n().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
-        Label e = CreatoreLabel.creaLabel("e: " + client.get_publicKey().get_e().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
+        Label n = CreatoreLabel.creaLabel("n: " + utente.get_publicKey().get_n().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
+        Label e = CreatoreLabel.creaLabel("e: " + utente.get_publicKey().get_e().toString(), Font.font("System", FontPosture.REGULAR, 12), 200, TextAlignment.LEFT, 0.5, 0, true);
         content.getChildren().addAll(privata, p, q, d, pubblica, n, e);
 
 
         return scrollPane;
     }
 
-    public Button creaMessaggioButton(Client client) {
+    public Button creaMessaggioButton(Utente utente) {
         Button bottone = CreatoreBottone.creaBottone("Invia Messaggio", Pos.CENTER, Font.font("System", FontWeight.BOLD, 16), 0, true);
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -265,12 +265,13 @@ public class VHome implements Initializable {
                 if (result.isPresent()) {
                     String messaggio = result.get();
                     MessaggioChiaro messaggioChiaro;
-                    if (client.get_nomeClient().equals("Bob")) {
-                        messaggioChiaro = new MessaggioChiaro(client, alice, messaggio);
+                    if (utente.get_nomeClient().equals("Bob")) {
+                        messaggioChiaro = new MessaggioChiaro(bob, alice, messaggio);
+                        bob.inviaMessaggioToClient(messaggioChiaro);
                     } else {
-                        messaggioChiaro = new MessaggioChiaro(client, bob, messaggio);
+                        messaggioChiaro = new MessaggioChiaro(alice, bob, messaggio);
+                        alice.inviaMessaggioToClient(messaggioChiaro);
                     }
-                    client.inviaMessaggioToClient(messaggioChiaro);
                 }
 
 
@@ -279,17 +280,18 @@ public class VHome implements Initializable {
         return bottone;
     }
 
-    public Button creaLeggiMessaggioButton(Client client) {
+    public Button creaLeggiMessaggioButton(Utente utente) {
         Button bottone = CreatoreBottone.creaBottone("Leggi Ultimo Messaggio Ricevuto", Pos.CENTER, Font.font("System", FontWeight.BOLD, 16), 0, true);
         bottone.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                BigInteger messaggioCifrato = client.getUltimoMessaggioRicevutoCifrato().get_messaggioCifrato();
+                MessaggioCifrato messaggioCifrato = utente.getUltimoMessaggioRicevutoCifrato();
                 if (messaggioCifrato != null) {
+                    BigInteger messaggioCifrato1 = messaggioCifrato.get_messaggioCifrato();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ultimo Messaggio");
                     alert.setHeaderText("Ultimo messaggio ricevuto");
-                    alert.setContentText("Messaggio in chiaro: " + client.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() + "\n" + "Messaggio cifrato: " + messaggioCifrato);
+                    alert.setContentText("Messaggio in chiaro: " + utente.getAndRemoveUltimoMessaggioRicevutoInChiaro().get_messaggioChiaro() + "\n" + "Messaggio cifrato: " + messaggioCifrato1);
                     alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label).forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
                     alert.showAndWait();
                 } else {

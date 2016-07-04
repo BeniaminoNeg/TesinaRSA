@@ -11,11 +11,11 @@ import java.util.Map;
  *
  * @author emanuele & beniamino
  */
-public class ArchivioChiaviPubbliche {
+public class CatalogoChiaviPubbliche {
     /**
      * Istanza unica della classe - Pattern Singleton
      */
-    private static ArchivioChiaviPubbliche _instance = null;
+    private static CatalogoChiaviPubbliche _instance = null;
     /**
      * Mappa contenente tutte le chiavi pubbliche dei client.
      */
@@ -24,16 +24,16 @@ public class ArchivioChiaviPubbliche {
     /**
      * Costruttore.
      */
-    private ArchivioChiaviPubbliche() {
+    private CatalogoChiaviPubbliche() {
         _chiaviPubblicheClient = new HashMap<String, PublicKey>();
     }
 
     /**
      * Metodo per ottenere l'istanza unica della classe - Pattern Singleton
      */
-    public static ArchivioChiaviPubbliche getInstance() {
+    public static CatalogoChiaviPubbliche getInstance() {
         if (_instance == null) {
-            _instance = new ArchivioChiaviPubbliche();
+            _instance = new CatalogoChiaviPubbliche();
         }
         return _instance;
     }
